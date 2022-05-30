@@ -1,3 +1,4 @@
+var BoredPetsNFT = artifacts.require("BoredPetsNFT");
 var Marketplace = artifacts.require("Marketplace");
 
 module.exports = async function(deployer) {
