@@ -75,4 +75,14 @@ contract Marketplace is ReentrancyGuard {
         }
         return nfts;
     }
+
+    function getMyNfts()public view returns(NFT[] memory) {
+        uint nftCount = _ntfCount.current();
+        uint myNftsCount = 0;
+        for(uint i = 0; i < nftCount;i ++){
+            if(_idToNFT[i + 1].owner == msg.sender){
+                myNftsCount++;
+            }
+        }
+    }
 }
