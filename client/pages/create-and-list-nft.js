@@ -63,4 +63,30 @@ export default function CreateItem() {
             }
         }
     }
+
+    async function listNFTForSale() {
+        const web3Modal = new Web3Modal()
+        const provider = await web3Modal.connect()
+        const web3 = new Web3(provider)
+        const url = await uploadToIPFS()
+        const networkId = await web3.eth.net.getId()
+
+        // Mintear el nft
+        const boredStudentContractAddress = BoredStudent.networks[networkId].address
+        const boredStudentContract = new web3.eth.Contract(BoredStudent.abi, boredStudentContractAddress)
+        const accounts = await web3.eth.getAccounts()
+        const marketPlaceContract = new web3.eth.Contract(Marketplace.abi, Marketplace.networks[networkId].address)
+        let listingFee = await marketPlaceContract.methods.getListingFee().call()
+        listingFee = listingFee.toString()
+        boredStudentContract.methods.mint(url).send({ from: accounts[0] }).on('receipt', function (receipt) {
+            console.log('minted');
+            // Listar el nft
+            const tokenId = receipt.events.NFTMinted.returnValues[0];
+            marketPlaceContract.methods.listNft(boredStudentContractAddress, tokenId, Web3.utils.toWei(formInput.price, "ether"))
+                .send({ from: accounts[0], value: listingFee }).on('receipt', function () {
+                    console.log('listed')
+                    router.push('/')
+                });
+        });
+    }
 }
