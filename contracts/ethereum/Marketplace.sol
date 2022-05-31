@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
+
 contract Marketplace is ReentrancyGuard {
   using Counters for Counters.Counter;
   Counters.Counter private _nftsSold;
@@ -39,7 +40,7 @@ contract Marketplace is ReentrancyGuard {
     _marketOwner = payable(msg.sender);
   }
 
-  // Listar los nft's en el mercado
+  // List the NFT on the marketplace
   function listNft(address _nftContract, uint256 _tokenId, uint256 _price) public payable nonReentrant {
     require(_price > 0, "Price must be at least 1 wei");
     require(msg.value == LISTING_FEE, "Not enough ether for listing fee");
@@ -60,7 +61,7 @@ contract Marketplace is ReentrancyGuard {
     emit NFTListed(_nftContract, _tokenId, msg.sender, address(this), _price);
   }
 
-  // comprar un nft
+  // Buy an NFT
   function buyNft(address _nftContract, uint256 _tokenId) public payable nonReentrant {
     NFT storage nft = _idToNFT[_tokenId];
     require(msg.value >= nft.price, "Not enough ether to cover asking price");
@@ -76,7 +77,7 @@ contract Marketplace is ReentrancyGuard {
     emit NFTSold(_nftContract, nft.tokenId, nft.seller, buyer, msg.value);
   }
 
-  // poder revender tus nfts
+  // Resell an NFT purchased from the marketplace
   function resellNft(address _nftContract, uint256 _tokenId, uint256 _price) public payable nonReentrant {
     require(_price > 0, "Price must be at least 1 wei");
     require(msg.value == LISTING_FEE, "Not enough ether for listing fee");

@@ -5,13 +5,13 @@ import "../../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "../../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "../../node_modules/@openzeppelin/contracts/utils/Counters.sol";
 
-contract BoredStudent is ERC721URIStorage {
+contract BoredPetsNFT is ERC721URIStorage {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
   address marketplaceContract;
   event NFTMinted(uint256);
 
-  constructor(address _marketplaceContract) ERC721("Bored Student Club", "BSC") {
+  constructor(address _marketplaceContract) ERC721("Bored Pets Yacht Club", "BPYC") {
     marketplaceContract = _marketplaceContract;
   }
 

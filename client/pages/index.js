@@ -1,34 +1,32 @@
 import Web3 from 'web3';
 import Web3Modal from 'web3modal';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Marketplace from '../contracts/ethereum-contracts/Marketplace.json';
-import BoredStudent from '../contracts/ethereum-contracts/BoredStudent.json';
+import Marketplace from '../contracts/ethereum-contracts/Marketplace.json'
+import BoredPetsNFT from '../contracts/ethereum-contracts/BoredPetsNFT.json'
 
-export default function Home(){
-  const[nfts,setNfts] = useState([]);
-  const[loadingState,setLoadingState] = useState('no cargado');
+export default function Home() {
+  const [nfts, setNfts] = useState([])
+  const [loadingState, setLoadingState] = useState('not-loaded')
 
-  useEffect(() => { loadNFTs() }, []);
+  useEffect(() => { loadNFTs() }, [])
 
-  async function loadNFTs(){
-    const web3Modal = new Web3Modal();
-    const provider = await web3Modal.connect();
-    const web3 = new Web3(provider);
-    const networkId = await web3.eth.net.getId();
+  async function loadNFTs() {
+    const web3Modal = new Web3Modal()
+    const provider = await web3Modal.connect()
+    const web3 = new Web3(provider)
+    const networkId = await web3.eth.net.getId()
 
-    //obtener todos los nfts listados
-    //dentro del json se encuentran los abis que es un diccionario y se accedden con el nombre del contrato lo mismo con el const listado
-    const marketplaceContract = new web3.eth.Contract(Marketplace.abi, Marketplace.networks[networkId].address);
-    const listados = await marketplaceContract.methods.getListings().call();
-
-    //iterar sobre los nfts listados y obtener su metadata
-    const nfts = await Promise.all(listings.map(async (i) =>{
-      try{
-        const boredStudentContract = await new web3.eth.Contract(BoredStudent.abi, BoredStudent.networks[networkId].address);
-        const tokenURI = await boredStudentContract.methods.tokenURI(i.tokenId).call();
-        const meta = await axios.get(tokenURI);
+    // Get all listed NFTs
+    const marketPlaceContract = new web3.eth.Contract(Marketplace.abi, Marketplace.networks[networkId].address)
+    const listings = await marketPlaceContract.methods.getListedNfts().call()
+    // Iterate over the listed NFTs and retrieve their metadata
+    const nfts = await Promise.all(listings.map(async (i) => {
+      try {
+        const boredPetsContract = new web3.eth.Contract(BoredPetsNFT.abi, BoredPetsNFT.networks[networkId].address)
+        const tokenURI = await boredPetsContract.methods.tokenURI(i.tokenId).call()
+        const meta = await axios.get(tokenURI)
         const nft = {
           price: i.price,
           tokenId: i.tokenId,
@@ -38,8 +36,8 @@ export default function Home(){
           name: meta.data.name,
           description: meta.data.description,
         }
-        return nft;
-      }catch(err){
+        return nft
+      } catch(err) {
         console.log(err)
         return null
       }
@@ -55,12 +53,12 @@ export default function Home(){
     const networkId = await web3.eth.net.getId();
     const marketPlaceContract = new web3.eth.Contract(Marketplace.abi, Marketplace.networks[networkId].address);
     const accounts = await web3.eth.getAccounts();
-    await marketPlaceContract.methods.buyNft(BoredStudent.networks[networkId].address, nft.tokenId).send({ from: accounts[0], value: nft.price });
+    await marketPlaceContract.methods.buyNft(BoredPetsNFT.networks[networkId].address, nft.tokenId).send({ from: accounts[0], value: nft.price });
     loadNFTs()
   }
-  
+
   if (loadingState === 'loaded' && !nfts.length) {
-    return (<h1 className="px-20 py-10 text-3xl">No pets available!</h1>)
+    return (<h1 className="px-20 py-10 text-3xl">No hay nfts cargados!</h1>)
   } else {
     return (
       <div className="flex justify-center">
