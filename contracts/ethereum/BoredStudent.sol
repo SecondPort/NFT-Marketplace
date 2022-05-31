@@ -1,18 +1,17 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >0.4.20;
+pragma solidity ^0.8.13;
 
 import "../../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "../../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "../../node_modules/@openzeppelin/contracts/utils/Counters.sol";
 
-
-contract BoredPetsNFT is ERC721URIStorage {
+contract BoredStudent is ERC721URIStorage {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
   address marketplaceContract;
   event NFTMinted(uint256);
 
-  constructor(address _marketplaceContract) ERC721("Bored Pets Yacht Club", "BPYC") {
+  constructor(address _marketplaceContract) ERC721("Bored Student Club", "BSC") {
     marketplaceContract = _marketplaceContract;
   }
 
