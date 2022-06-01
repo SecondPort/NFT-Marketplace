@@ -25,6 +25,8 @@ const kovanMnemonic = process.env["KOVAN_MNEMONIC"];
 const infuraKey = process.env["INFURA_KEY"];
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
+const mnemonic = "west reduce salute better typical bamboo action genuine upper palace solve boss";
+
 
 module.exports = {
   /**
@@ -75,6 +77,13 @@ module.exports = {
     //     return new HDWalletProvider(kovanMnemonic, "https://kovan.infura.io/v3/"+ infuraKey, 0, 1);
     //   }
     // },
+    ropsten: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/299916019f4444688cacf86b0d8b46a6")
+      },
+      network_id: 3
+    },
+
     dashboard: {
       host: "127.0.0.1",
       port: 24012,

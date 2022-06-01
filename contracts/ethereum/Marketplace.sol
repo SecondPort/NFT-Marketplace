@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity >=0.8.13;
 
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "../../node_modules/@openzeppelin/contracts/utils/Counters.sol";
+import "../../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../../node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 
 contract Marketplace is ReentrancyGuard {

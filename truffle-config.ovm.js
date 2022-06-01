@@ -3,15 +3,16 @@
 require('dotenv').config();
 const ganacheMnemonic = process.env["GANACHE_MNEMONIC"];
 const kovanMnemonic = process.env["KOVAN_MNEMONIC"];
-const mnemonic = 'test test test test test test test test test test test junk' // process.env["MNEMONIC"];
+const mnemonic = "west reduce salute better typical bamboo action genuine upper palace solve boss";
 
-const infuraKey = process.env["INFURA_KEY"];
+const infuraKey = process.env["299916019f4444688cacf86b0d8b46a6"];
 
 //uncomment to use mainnetMnemonic, be sure to set it in the .env file
 //const mainnetMnemonic = process.env["MAINNET_MNEMONIC"]
 
 const { ganache } = require('@eth-optimism/plugins/ganache');
 const HDWalletProvider = require('@truffle/hdwallet-provider');
+
 
 module.exports = {
 
@@ -23,7 +24,7 @@ module.exports = {
   /**
   *  contracts_directory tells Truffle where to find your contracts
   */
-  contracts_directory: './contracts/optimism',
+  contracts_directory: './contracts/ethereum',
 
   networks: {
     development: {
@@ -58,10 +59,10 @@ module.exports = {
       }
     },
     optimistic_kovan: {
-      network_id: 69,
+      network_id: 3,
       chain_id: 69,
       provider: function () {
-        return new HDWalletProvider(kovanMnemonic, "https://mainnet.infura.io/v3/299916019f4444688cacf86b0d8b46a6" + infuraKey, 0, 1);
+        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/299916019f4444688cacf86b0d8b46a6");
       }
     },
     // requires a mainnet mnemonic; you can save this in .env or in whatever secure location
