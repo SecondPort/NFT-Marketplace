@@ -22,8 +22,8 @@ module.exports = {
   contracts_build_directory: './client/contracts/optimism-contracts',
 
   /**
-  *  contracts_directory tells Truffle where to find your contracts
-  */
+   *  contracts_directory tells Truffle where to find your contracts
+   */
   contracts_directory: './contracts/ethereum',
 
   networks: {
@@ -59,10 +59,10 @@ module.exports = {
       }
     },
     optimistic_kovan: {
-      network_id: 3,
+      network_id: 69,
       chain_id: 69,
       provider: function () {
-        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/299916019f4444688cacf86b0d8b46a6");
+        return new HDWalletProvider(mnemonic, "https://optimism-kovan.infura.io/v3/299916019f4444688cacf86b0d8b46a6");
       }
     },
     // requires a mainnet mnemonic; you can save this in .env or in whatever secure location
