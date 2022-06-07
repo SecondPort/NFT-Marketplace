@@ -1,3 +1,4 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/secondport/nft-marketplace/badge)](https://www.codefactor.io/repository/github/secondport/nft-marketplace)
 # Optimism Box
 
 - [Requirements](#requirements)
