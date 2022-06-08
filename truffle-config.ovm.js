@@ -2,8 +2,8 @@
 // like the mnemomic below. Note: .env is ignored by git in this project to keep your private information safe
 require('dotenv').config();
 const ganacheMnemonic = process.env["GANACHE_MNEMONIC"];
-const kovanMnemonic = process.env["KOVAN_MNEMONIC"];
-const mnemonic = "west reduce salute better typical bamboo action genuine upper palace solve boss";
+const kovanMnemonic = process.env["west reduce salute better typical bamboo action genuine upper palace solve boss"];
+const mnemonic = 'west reduce salute better typical bamboo action genuine upper palace solve boss' // process.env["MNEMONIC"];
 
 const infuraKey = process.env["299916019f4444688cacf86b0d8b46a6"];
 
@@ -12,6 +12,12 @@ const infuraKey = process.env["299916019f4444688cacf86b0d8b46a6"];
 
 const { ganache } = require('@eth-optimism/plugins/ganache');
 const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+module.exports = async function(deployer) {
+  await deployer.deploy(Marketplace);
+  const marketplace = await Marketplace.deployed();
+  await deployer.deploy(BoredPetsNFT, marketplace.address, {from: "0x0F8599DD01B32d2a4573CdFf1f3325FcfdbB331a"});
+}
 
 
 module.exports = {
@@ -22,9 +28,9 @@ module.exports = {
   contracts_build_directory: './client/contracts/optimism-contracts',
 
   /**
-   *  contracts_directory tells Truffle where to find your contracts
-   */
-  contracts_directory: './contracts/ethereum',
+  *  contracts_directory tells Truffle where to find your contracts
+  */
+  contracts_directory: './contracts/optimism',
 
   networks: {
     development: {
