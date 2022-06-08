@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Web3Modal from 'web3modal';
 
-import Marketplace from "../contracts/optimism-contracts/Marketplace.json";
-import BoredStudent from "../contracts/optimism-contracts/BoredPetsNFT.json";
+import Marketplace from '../contracts/optimism-contracts/Marketplace.json';
+import BoredPetsNFT from '../contracts/optimism-contracts/BoredPetsNFT.json';
 
 export default function CreatorDashboard() {
     const [nfts, setNfts] = useState([])
@@ -18,10 +18,11 @@ export default function CreatorDashboard() {
         const web3 = new Web3(provider)
         const networkId = await web3.eth.net.getId()
 
+        // Get listed NFTs
         const marketPlaceContract = new web3.eth.Contract(Marketplace.abi, Marketplace.networks[networkId].address)
         const accounts = await web3.eth.getAccounts()
         const listings = await marketPlaceContract.methods.getMyListedNfts().call({ from: accounts[0] })
-
+        // Iterate over my listed NFTs and retrieve their metadata
         const nfts = await Promise.all(listings.map(async i => {
             try {
                 const boredPetsContract = new web3.eth.Contract(BoredPetsNFT.abi, BoredPetsNFT.networks[networkId].address)
