@@ -77,6 +77,7 @@ contract Marketplace is ReentrancyGuard {
         nonReentrant
     {
         NFT storage nft = _idToNFT[_tokenId];
+        require(nft.owner != address(this), "you can't buy your own nft");
         require(
             msg.value >= nft.price,
             "Not enough ether to cover asking price"
