@@ -39,7 +39,7 @@ contract Marketplace is ReentrancyGuard {
         _marketOwner = payable(msg.sender);
     }
 
-    // List the NFT on the marketplace
+    // listar un nft
     function listNft(
         address _nftContract,
         uint256 _tokenId,
@@ -70,7 +70,7 @@ contract Marketplace is ReentrancyGuard {
         );
     }
 
-    // Buy an NFT
+    // comprar un nft
     function buyNft(address _nftContract, uint256 _tokenId)
         public
         payable
@@ -94,7 +94,7 @@ contract Marketplace is ReentrancyGuard {
         emit NFTSold(_nftContract, nft.tokenId, nft.seller, buyer, msg.value);
     }
 
-    // Resell an NFT purchased from the marketplace
+    // poder revender un nft
     function resellNft(
         address _nftContract,
         uint256 _tokenId,
