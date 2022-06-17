@@ -107,7 +107,7 @@ export default function CreateItem() {
                     )
                 }
                 <button onClick={listNFTForSale} className="font-bold mt-4 bg-teal-400 text-white rounded p-4 shadow-lg">
-                    Mint and list NFT
+                    Mint y listar NFT
                 </button>
             </div>
         </div>
