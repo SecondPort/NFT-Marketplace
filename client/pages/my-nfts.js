@@ -55,7 +55,7 @@ export default function MyAssets() {
     }
 
     if (loadingState === 'loaded' && !nfts.length) {
-        return (<h1 className="py-10 px-20 text-3xl">No NFTs owned</h1>);
+        return (<h1 className="py-10 px-20 text-3xl">No tienes NFTs comprados</h1>);
     } else {
         return (
             <div className="flex justify-center">

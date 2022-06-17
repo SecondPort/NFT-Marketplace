@@ -58,7 +58,7 @@ export default function Home() {
   }
 
   if (loadingState === 'loaded' && !nfts.length) {
-    return (<h1 className="px-20 py-10 text-3xl">No pets available!</h1>)
+    return (<h1 className="px-20 py-10 text-3xl">No hay NFTs disponibles para vender</h1>)
   } else {
     return (
       <div className="flex justify-center">

@@ -1,5 +1,6 @@
 var BoredPetsNFT = artifacts.require("BoredPetsNFT");
 var Marketplace = artifacts.require("Marketplace");
+var Web3 = require('web3');
 
 async function logNftLists(marketplace) {
     let listedNfts = await marketplace.getListedNfts.call()
@@ -34,7 +35,7 @@ const main = async (cb) => {
         await logNftLists(marketplace)
 
         console.log('BUY 2 NFTs')
-        await marketplace.buyNft(boredPets.address, tokenId1, { value: 1 })
+        await marketplace.buyNft(boredPets.address, tokenId1, { value: 1, })
         await marketplace.buyNft(boredPets.address, tokenId2, { value: 1 })
         await logNftLists(marketplace)
 
