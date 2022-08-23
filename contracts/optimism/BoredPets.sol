@@ -19,9 +19,9 @@ contract BoredPetsNFT is ERC721URIStorage {
   function mint(string memory _tokenURI) public {
     _tokenIds.increment();// increment the tokenIds counter
     uint256 newTokenId = _tokenIds.current();// get the new tokenId
-    _safeMint(msg.sender, newTokenId);
-    _setTokenURI(newTokenId, _tokenURI);
-    setApprovalForAll(marketplaceContract, true);
+    _safeMint(msg.sender, newTokenId);// safeMint: mint a new token with the given tokenId
+    _setTokenURI(newTokenId, _tokenURI);// set the tokenURI for the new token
+    setApprovalForAll(marketplaceContract, true);// set the approval for the marketplace contract
     emit NFTMinted(newTokenId);
   }
 }
