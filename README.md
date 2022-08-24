@@ -1,3 +1,4 @@
+[![BCH compliance](https://bettercodehub.com/edge/badge/SecondPort/NFT-Marketplace?branch=main)](https://bettercodehub.com/)
 # Optimism Box
 
 - [Requirements](#requirements)
