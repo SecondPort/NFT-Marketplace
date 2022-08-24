@@ -1,4 +1,5 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/SecondPort/NFT-Marketplace?branch=main)](https://bettercodehub.com/)
+[![CodeFactor](https://www.codefactor.io/repository/github/secondport/nft-marketplace/badge)](https://www.codefactor.io/repository/github/secondport/nft-marketplace)
 # Optimism Box
 
 - [Requirements](#requirements)
