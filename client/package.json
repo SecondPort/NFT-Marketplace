@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "nft-marketplace",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -24,5 +24,9 @@
     "eslint-config-next": "12.1.6",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "author": "secondport",
+  "license": "ISC"
 }
